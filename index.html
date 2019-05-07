@@ -90,7 +90,11 @@
                     height: 50,
                     src: canvas.toDataURL()
                 });
-                $('#gallery').append(img.addClass('thumbnail'));
+                var link = $('<a>').attr({
+                    href: canvas.toDataURL().replace('image/png', 'application/octet-stream'),
+                    download: new Date().getTime() + '.png'
+                });
+                $('#gallery').append(link.append(img.addClass('thumbnail')));
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
             });
         });
